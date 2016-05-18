@@ -42,8 +42,8 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 >快捷键 ctrl-alt-o
 
 + [sublime格式化插件 CodeFormatter]
-+ [jsformat 格式化插件] 快捷键 ctrl+alt+f
 +  Emmet
++   Sublime HTML Prettify
 + css3
 + jquery
 + BracketHighlighter 高亮元素
