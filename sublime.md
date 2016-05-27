@@ -43,7 +43,7 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 
 + [sublime格式化插件 CodeFormatter]
 +  Emmet
-+   Sublime HTML Prettify
++  html beautify
 + css3
 + jquery
 + BracketHighlighter 高亮元素
@@ -51,6 +51,7 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 + MarkdownEditing markdown 写作提示工具
 + AutoFileName 自动补全路径
 + ColorPicker    一个完整的选色工具可以直接在你的编辑器中使用     Ctrl/Cmd + Shift + C。
++ IMESupport 中文输入法跟随
 +  Sublime​Code​Intel 
 > 持所有 Komode Editor 支持的代码语言，如：JavaScript, Mason, XBL, XUL, RHTML, SCSS, Python, HTML, Ruby, Python3, XML, Sass, XSLT, Django, HTML5, Perl, CSS, Twig, Less, Smarty, Node.js, Tcl, TemplateToolkit, PHP等。
 > 提供以下功能：
@@ -65,3 +66,13 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 
 > sublime 主题
 + Monokai Extended
+
+
+> sublime sass支持
+
+1. [安装ruby](http://rubyinstaller.org/downloads/)
+2. [ruby安装sass](http://www.w3cplus.com/sassguide/install.html)
+3. [sublime 安装sass插件](http://blog.dimpurr.com/sublime-sass/)
+4. sublime 安装插件 SublimeOnSaveBuild （每次保存的时候就进行编译）
+
+> sublime js错误提示插件 (JSHint与JSHint Gutter)[http://jarontai.github.io/blog/2014/11/28/sublime-jshint/]
