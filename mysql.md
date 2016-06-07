@@ -100,3 +100,103 @@
 
 + 查看数据表列表
 + SHOW TABLES [FROM db_name]
++ 查看数据表结构
++ SHOW COLUMNS FROM tb1;
+
+> 记录的插入
+
++ INSERT [INTO] tb_name [(col_name,...)] VALUES (val,...)
++ 如果省略tb_name 那么值要为全部字段
++ 加tb_name 可以为部分字段；
+
+> 记录查找
+
++ SELECT EXPR,.....FORM tb_name;
+
+> 空值与非空值
+
++ NULL ,字段可以为空
++ NOT NULL 字段禁止为空
+
+> 自动编号
+
++ AUTO_INCREMENT
++ 默认情况下，起始值为1，每次增量为1；
++ 必须和主键一起使用；
++ 不需要插入值；
+
+> 主键
+
++ 一张表只能存在一个主键
++ 主键保证记录的唯一性
++ 主键自动为 not null;
++ 主键不能插入相同的值；
+
+> 初涉唯一约束
+
++ UNIQUE
++ 唯一约束
++ 唯一约束可以保障记录的唯一性
++ 唯一约束的字段可以为空值 null
++ 每张数据表可以存在多个唯一约束(可以存在多个设置唯一约束的字段，但是不能相同)
+
+```
+mysql> CREATE TABLE tb5(
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL UNIQUE KEY,
+    age tinyint UNSIGNED
+    );
+```
+
+执行两次
+```
+mysql> insert tb5 (username,age) values ('tom',22)
+```
+
+报错
+```
+ERROR 1062 (23000): Duplicate entry 'tom' for key 'username'
+```
+
+> 初涉默认约束
+
++ 默认值
++ 当插入记录时，如果没有明确为字典赋值，则自动赋予默认值；
+
+```
+mysql> CREATE TABLE tb6(
+    id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL UNIQUE KEY,
+    sex ENUM('1','2','3') DEFAULT '3'
+    );
+```
+
+
+> 约束
+
+1. 约束保证数据的完整性和一致性
+2. 约束分为表级约束和列级约束
+3. 约束类型包括
+    + NOT NULL(非空约束)
+    + PRIMARY KEY(主键约束)
+    + UNIQUE KEY(唯一约束)
+    + DEFAULT (默认约束)
+    + FOREIGN KEY(外键约束)
+        + 保持数据的一致性，完整性
+        + 实现一对一或者一对多的关系
+
+> 外键约束的要求
+
+1. 父表和字表必须使用相同的存储引擎，而且禁止使用临时表
+2. 数据表的存储引擎只能为innoDB；
+3. 外键列和参照列必须具有相似的数据类型，其中数字的长度或是具有符号位必须相同；
+   而字符的长度则可以不同。
+4. 外键列和参照列必须创建索引，如果外键列不存在索引的话，mysql将自动创建索引；
+
+> 编辑数据表的默认存储引擎
+
++ mysql配置文件
++ default-storage-engine = INNODB;
+
+
+
