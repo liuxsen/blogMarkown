@@ -1,15 +1,17 @@
 # MySQL学习思路（基础部分）:
-1、了解什么是数据库，以及我们为什么需要数据库？
-2、了解MySQL的安装与配置。
-3、掌握在MySQL环境下如何创建、修改、删除数据库。
-4、掌握MySQL环境下的数据类型，主要包括字符、整型、浮点及日期，以及每种数据类型的存储特点。
-5、熟练掌握MySQL环境下数据表的创建、修改、删除操作。
-6、熟练掌握各种约束的使用，主要包含主键约束、唯一约束、外键约束、非空约束、默认约束。
-7、熟练掌握记录的增、删、改、查等操作，也就是常说的CURD操作，当然也包括多表关联的操作。
-8、掌握MySQL的运算符及内置函数的使用，主要包括字符函数库、数学函数库、日期时间函数库等。
+1. 了解什么是数据库，以及我们为什么需要数据库？
+2. 了解MySQL的安装与配置。
+3. 掌握在MySQL环境下如何创建、修改、删除数据库。
+4. 掌握MySQL环境下的数据类型，主要包括字符、整型、浮点及日期，以及每种数据类型的存储特点。
+5. 熟练掌握MySQL环境下数据表的创建、修改、删除操作。
+6. 熟练掌握各种约束的使用，主要包含主键约束、唯一约束、外键约束、非空约束、默认约束。
+7. 熟练掌握记录的增、删、改、查等操作，也就是常说的CURD操作，当然也包括多表关联的操作。
+8. 掌握MySQL的运算符及内置函数的使用，主要包括字符函数库、数学函数库、日期时间函数库等。
 希望对各位朋友有所帮助！
 
->[下载mysql](http://download.csdn.net/download/lxq_xsyu/6468461)
+> [相关博客](http://blog.csdn.net/toto1297488504/article/category/1282728)
+
+> [下载mysql](http://download.csdn.net/download/lxq_xsyu/6468461)
 
 > 安装mysql出错
 
@@ -18,7 +20,7 @@
 2.在C盘下找到ProgramData文件夹下的MySQL,直接删除
 3.重新安装MySQL，问题即可解决
 
-#mysql操作
+# mysql操作
 
 > 停止启动服务
 
@@ -89,6 +91,8 @@
 + SELECT DATABASE() 
 + 创建数据表
 + CREATE TABLE [IF NOT EXISTS] table_name (column_name,data_type)
++ 删除数据表
++ DROP TABLE table_name
 
 ```
 -> create table tb1(
@@ -176,7 +180,7 @@ mysql> CREATE TABLE tb6(
 
 1. 约束保证数据的完整性和一致性
 2. 约束分为表级约束和列级约束
-3. 约束类型包括
+3. 约束类型包括(按照功能划分)
     + NOT NULL(非空约束)
     + PRIMARY KEY(主键约束)
     + UNIQUE KEY(唯一约束)
@@ -189,7 +193,7 @@ mysql> CREATE TABLE tb6(
 
 1. 父表和字表必须使用相同的存储引擎，而且禁止使用临时表
 2. 数据表的存储引擎只能为innoDB；
-3. 外键列和参照列必须具有相似的数据类型，其中数字的长度或是具有符号位必须相同；
+3. 外键列和参照列必须具有相似的数据类型，其中数字的长度或是否具有符号位必须相同；
    而字符的长度则可以不同。
 4. 外键列和参照列必须创建索引，如果外键列不存在索引的话，mysql将自动创建索引；
 
@@ -198,5 +202,245 @@ mysql> CREATE TABLE tb6(
 + mysql配置文件
 + default-storage-engine = INNODB;
 
+> 外键约束案例
+
++ 长度（字符可以不同） ，符号位 要相同
+
+> 父表
+
+```
+mysql> CREATE TABLE province(
+        id SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        pname VARCHAR(20) NOT NULL
+    );
+```
+
+```
+SHOW CREATE TABLE province;
+```
+
+> 子表
+
+```
+mysql> CREATE TABLE users(
+        id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        username VARCHAR(10) NOT NULL,
+        pid SMALLINT UNSIGNED ,
+        FOREIGN KEY (pid) REFERENCES province (id)
+    );
+```
+
++ 显示索引
+
+```
+SHOW INDEXES FROM provinces;
+```
+
+```
+SHOW INDEXES FROM provinces\G;
+```
+
+## 外键约束的参照操作
+
+1. CASCADE: 从父表删除或更新且自动删除或更新子表中匹配的行
+2. SET NULL: 从父表删除或更新行，并设置子表中的外键列为NULL、如果
+    使用该选项，必须保证子表没有指定NULL;
+3. RESTRICT: 拒绝对父表的删除或更新操作
+4. NOT ACTION : 标准SQL的关键字，在mysql中与RESTICT 相同；
+
+> 案例
+
+```
+mysql> CREATE TABLE users1(
+    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT ,
+    username VARCHAR(10) NOT NULL,
+    pid SMALLINT UNSIGNED,
+    FOREIGN KEY (pid) REFERENCES province (id) ON DELETE CASCADE
+    );
+```
 
 
++ 必须先在父表中插入记录
+
+```
+mysql> insert province (pname) values ('a');
+```
+
+```
+mysql> insert users1 (username) values ('tom');
+```
+
+## 表级约束和列级约束
+
++ 对一个数据列建立的约束，成为列级约束
++ 对多个数据列建立的约束，成为表级约束
++ 列级约束既可以在列定义时声明，也可以在列定义后声明
++ 表级约束只能在列定义后声明
+
+## 修改数据表
+
+> 添加单列
+
+```
+ALTER TABLE tbl_name ADD [COLUMN] col_name column_definition [FIRST | AFTER col_name]
+```
+
+> 添加多列
+
+```
+mysql> ALTER TABLE tbl_name ADD [COLUMN] (col_name column_definition,...)
+```
+
++ 位于所有列的前面
+
+```
+mysql> ALTER TABLE users1 ADD password VARCHAR(20) FIRST username;
+```
+
++ 位于指定列的后面
+
+```
+mysql> ALTER TABLE users1 ADD password VARCHAR(20) AFTER username;
+```
+
++ 查看表的结构
+
+```
+mysql> SHOW COLUMNS FROM users1;
+```
+
+## 删除列
+
+> 删除单列
+
+```
+ALTER TABLE tbl_name DROP [COLUMN] col_name;
+```
+
+> 删除多列
+
+```
+ALTER TABLE tbl_name DROP [COLUMN] col_name,DROP [COLUMN] col_name,;
+```
+
+> 删除列同时新增列
+
+```
+ALTER TABLE tbl_name DROP col_name,ADD col_name col_definition
+```
+
+## 约束
+
+
+```
+mysql> CREATE TABLE users2(
+        username VARCHAR(10) NOT NULL,
+        pid SMALLINT UNSIGNED
+    );
+```
+
+> 增加主键
+
+```
+ALTER TABLE users2 ADD ID SMALLINT UNSIGNED;
+```
+
+> 添加主键约束
+
+```
+ALTER TABLE tbl_name ADD [CONSTRAINT[symbol]] PRIMARY KEY [index_type] (index_col_name,...)
+```
+
+> 添加唯一约束
+
+```
+ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [index_name] [index_type] (index_col_name,...)
+```
+
++ 使id为主键
+
+```
+ALTER TABLE users2 ADD CONSTRAINT PK_users2_id PRIMARY KEY (id);
+```
+
++ 为username添加唯一约束
+
+```
+mysql> ALTER TABLE users2 ADD UNIQUE (username);
+```
+
++ 添加外键约束
+
+```
+ALTER TABLE tbl_name ADD [CONSTRAINT[symbol]] FOREIGN KEY [index_name] (index_col_name,...) references tbl_name (index_col_name,...);
+```
+
+```
+ALTER TABLE users2 ADD FOREIGN KEY [pid] references province(id)
+```
+
++ 添加或者删除默认约束
+
+```
+ALTER TABLE tbl_name ALTER [COLUMN] col_name {SET DEFAULT literal | DROP DEFAULT}
+```
+
+```
+ALTER TABLE users2 ADD age tinyint unsigned not null;
+```
+
+```
+ALTER TABLE users2 ALTER age SET DEFAULT 15;
+```
+
+```
+ALTER TABLE users2 ALTER age DROP DEFAULT;
+```
+
+## 删除约束
+
++ 删除主键约束
+
+```
+ALTER TABLE tbl_name DROP PRIMARY KEY;
+```
+
++ 删除唯一约束
+
+```
+ALTER TABLE tbl_name DROP {INDEX|KEY} index_name;
+```
+
++ 删除外键约束
+
+```
+ALTER TABLE tbl_name DROP FOREIGN KEY fk_symbol;
+```
+
+## 修改数据表
+
+> 修改列定义
+
+```
+ALTER TABLE tbl_name MODIFY [COLUMN] col_name column_definition [FIRST|AFTER COL_NAME]
+```
+
+> 修改列名称
+
+```
+ALTER TABLE tb_name CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST|AFTER col_name]
+```
+
+> 数据表更名
+
+1. 方法1
+
+```
+ALTER TABLE tbl_name RENAME [TO|AS] new_tbl_name
+```
+
+2. 方法2
+
+```
+RENAME TABLE tbl_name TO new_tbl_name [,tbl_name2 ]
+```
