@@ -444,3 +444,112 @@ ALTER TABLE tbl_name RENAME [TO|AS] new_tbl_name
 ```
 RENAME TABLE tbl_name TO new_tbl_name [,tbl_name2 ]
 ```
+
+
+## 总结
+
++ 约束
+    + 功能
+        + NOT NULL(非空约束)
+        + PRIMARY KEY (主键约束)
+        + UNIQUE KEY (唯一约束)
+        + DEFAULT (默认约束)
+        + FOREIGN KEY (外键约束)
+    + 数据列的数目
+        + 标记约束
+        + 列级约束
++ 修改数据表
+    + 针对字段的操作 ： 添加/删除/字段、修改列定义，修改列名称等
+    + 针对约束的操作 ： 添加/删除各种约束
+    + 针对数据表的操作： 数据表更名操作 （两种方式）；
+
+# 记录的CURD
+
+> 插入记录
+
+```
+INSERT [INTO] tbl_name [(col_name,...)] {values|value} ({expr | DEFAULT},...),(),...
+```
+
+```
+INSERT [INTO] tbl_name SET col_name={expr|DEFAULT},...
+```
+
++ 说明： 与第一种的方式的区别在于，此方法可以使用子查询（SUBQUERY）
+
+```
+INSERT [INTO] tbl_name [(col_name,...)] SELECT ...
+```
+
++ 说明：此方法可以将查询结果插入到制定数据表
+
++ 如果想要为id 自增的值赋值（默认值），可以赋值 null 或者 default；
++ 赋值也可以用比表达式
+
+> 单表更新记录UPDATE
+
+```
+更新记录（单表更新）
+UPDATE [LOW_PRIORITY] [IGNORE] table_name SET col_name1={expr1|default} [,col_name2={expr2|DEFAULT}] ... [WHERE where_condition]
+```
+
+```
+update users set age = age+5;
+```
+
+```
+update users set age = age-id, sex = 0;
+```
+
+```
+update users set age = age+10 where id % 2 = 0;
+```
+
+> 删除记录（单表删除）
+
+```
+DELETE FROM tbl_name [WHERE where_confition]
+```
+
+> 查询表达式解析
+
++ 查询记录
+
+```
+SELECT select_expr [,select_expr ...]
+[
+    FROM tabel_references 
+    [WHERE where_condition]
+    [GROUP BY {col_name | position} [ASC | DESC],...]
+    [HAVING where_condition]
+    [ORDER BY {col_name | expr | position } [ASC | DESC ],...]
+    [LIMIT {[offset,] row_count | row_count OFFSET offset}]
+]
+```
+
+> select_expr 查询表达式
+
++ 每一个表达式表示想要的一列，必须至少一个。
++ 多个列之间以英文逗号分隔。
++ 星号（*）表示所有列，tbl_name.\* 可以表示命名表的所有列。
++ 查询表达式可以使用 [AS] alias_name 为其赋予别名
++ 别名可以用于 GROUP BY , ORDER BY 或 HAVING 子句；
+
+```
+select id as usersid ,username as uname from users;
+```
+
+> where 条件表达式
+
++ 对记录进行过滤，如果没有指定where子句，则显示所有记录，在where表达式中，可以使用mysql支持的表达式或者运算符；
+
+
+
+
+
+
+
+
+
+
+
