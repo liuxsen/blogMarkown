@@ -541,15 +541,94 @@ select id as usersid ,username as uname from users;
 
 > where 条件表达式
 
-+ 对记录进行过滤，如果没有指定where子句，则显示所有记录，在where表达式中，可以使用mysql支持的表达式或者运算符；
+1. 对记录进行过滤，如果没有指定where子句，则显示所有记录，在where表达式中，可以使用mysql支持的表达式或者运算符；
+
+> group by 查询结果分组
+
+1. ASC 升序
+2. desc 降序
+
+```
+[GROUP BY {col_name| position} [ASC | DESC],...]
+```
+
+```
+select age group by age;
+```
+
+> HAVING
+
++ 分组条件(只对某一部分进行分组)
++ [HAVING where_condition]
+
+```
+select age username from users group by age having age>12;
+```
 
 
+> order by 对查询结果进行排序
+
++  对查询结果进行排序
++ [order by {col_name} [asc | desc]]
+
+> limit 
+
++ 限制查询数量
+
+```
+[LIMIT {offset,}row_count | row_count OFFSET offset]
+```
+
+```
+select * from users limit 2;
+```
+
+```
+select * from users order by id desc limit 0,2;
+```
+
++ 将查询的数据插入表
+
+```
+insert test select username from users where age > 12;
+```
+
+## 子查询 连接
+
+> 数据准备
+
++ goods_cate 商品分类
++ brand_name 商品品牌
++ good_price 商品价格
++ is_show  商品是否上架，在销售
++ is_saleOff 是否销售完了，
+
+```
+create table tdb_goods(
+        goods_id smallint unsigned primary key auto_increment,
+        goods_name varchar(150) not null,
+        goods_cate varchar(40) not null,
+        brand_name varchar(40) not null,
+        good_price decimal(15,3) unsigned not null,
+        is_show tinyint(1) not null default 1,
+        is_saleOff tinyint(1) not null default 0
+    );
+```
+
+```
+set names gbk;
+```
 
 
-
-
-
-
-
-
-
+```
+insert tdb_goods (goods_name,goods_cate,brand_name,good_price,is_show,is_saleOff) values
+('西红柿','蔬菜','红富士',2.5,1,0),
+('森马t恤','t恤','森马',233,1,0),
+('金钥匙','金属','美国金属',100,1,0),
+('zuk','手机','联想',1500,1,0),
+('iphone6','手机','红富士',6000,1,0),
+('thinkpad','笔记本','联想',4000,1,0),
+('框狄','水杯','富士',50,1,0),
+('tplink','路由器','tplink',100,1,0)
+;
+```
