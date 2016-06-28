@@ -14,3 +14,8 @@ machine https://github.com
 login liuxsen
 password zou1san1
 ```
+
++ [使用 GitHub / GitLab 的 Webhooks 进行网站自动化部署](http://www.lovelucy.info/auto-deploy-website-by-webhooks-of-github-and-gitlab.html)
++ [正确使用Github 的方法 + Git 和 GitHub 教程和技巧](https://segmentfault.com/a/1190000004260265)
++ [利用github webhook自动更新hexo](http://blog.liaol.net/2015/06/use-github-webhooks-to-deploy-hexo/)
++ [GitHub 集成](http://www.chengweiyang.cn/gitbook/gitbook.com/config/github.html)
