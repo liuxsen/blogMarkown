@@ -24,7 +24,7 @@ PHPIniDir "D:/amp/php"
 
 > apache 配置
 
-1. httpd.exe 可以检测httpd.conf的语法错误
+1. httpd.exe 可以检测httpd.conf的语法错误 语法是 httpd.exe -t
 
 > 配置php的基本运行环境
 
@@ -84,7 +84,7 @@ PHPIniDir "D:/amp/php"
             
             ```
                 <Directory "F:/phpCode">
-                    # 下一行用于设定 "可现实文件列表"（当无可现实网页的时候） 
+                    # 下一行用于设定 "可显示文件列表"（当无可现实网页的时候） 
                     Options Indexes
                     # 用于设定权限的判断顺序，先拒绝，后允许
                     Order deny,allow
