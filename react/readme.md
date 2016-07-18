@@ -1,2 +1,9 @@
-# sublime 插件安装
-+ [SUBLIME TEXT 3搭建REACT.JS开发环境](http://hao.jser.com/archive/8322/)
+**react 本地jsx环境编译**
+
+```
+npm –g react-tools
+jsx --watch src/ build/
+```
+
++ src 目录下面的是jsx文件；
++ build是编译之后的文件；
