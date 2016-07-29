@@ -45,6 +45,8 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 +  Emmet
 +  html beautify
 + css3
++ DocBlockr
+    * 一个真正简单的方式来轻松地创建许多语言包括JavaScript，PHP和CoffeeScript的文档块。只要在函数的上面输入/**，按Tab就可以了。DocBlockr会观察函数需要的变量名和类型，并创建文档块。
 + jquery
 + BracketHighlighter 高亮元素
 + AllAutocomplete  可以搜索全部打开的标签页进行提示
@@ -52,6 +54,8 @@ FD032C30 AD5E7241 4EAA66ED 167D91FB
 + AutoFileName 自动补全路径
 + ColorPicker    一个完整的选色工具可以直接在你的编辑器中使用     Ctrl/Cmd + Shift + C。
 + IMESupport 中文输入法跟随
++ SideBar Enhancements  顾名思义：增强左边导航栏的作用；
++ bootstrap snippets
 +  Sublime​Code​Intel 
 > 持所有 Komode Editor 支持的代码语言，如：JavaScript, Mason, XBL, XUL, RHTML, SCSS, Python, HTML, Ruby, Python3, XML, Sass, XSLT, Django, HTML5, Perl, CSS, Twig, Less, Smarty, Node.js, Tcl, TemplateToolkit, PHP等。
 > 提供以下功能：

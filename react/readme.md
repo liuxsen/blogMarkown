@@ -1,7 +1,7 @@
 **react 本地jsx环境编译**
 
 ```
-npm –g react-tools
+npm install –g react-tools
 jsx --watch src/ build/
 ```
 
