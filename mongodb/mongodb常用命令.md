@@ -1,3 +1,8 @@
+---
+title: 'mongodb'
+date: 2016-05-15 22:00:07
+tags: mongodb
+---
 # mongodb 下载安装步骤
 
 + [下载安装地址](https://www.mongodb.com/download-center#community)

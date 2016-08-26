@@ -1,3 +1,8 @@
+---
+title: ie
+date: 2014-08-07 19:26:34
+tags: ie
+---
 # iframe 问题集锦
 
 + jquery获取iframe内容

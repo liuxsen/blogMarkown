@@ -1,3 +1,8 @@
+---
+title: 'php'
+date: 2016-05-15 22:00:07
+tags: php
+---
 # 原生安装php环境配置.
 
 > 配置apache解析 php文件，

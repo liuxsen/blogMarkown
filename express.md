@@ -1,3 +1,10 @@
+---
+layout: '''express'
+title: express语法'
+date: 2016-05-15 22:58:11
+tags: nodejs
+---
+
 ## nodejs-helloworld
 
 ```js

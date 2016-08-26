@@ -1,3 +1,8 @@
+---
+title: 'mongoose'
+date: 2016-05-15 22:00:07
+tags: mongoose
+---
 # mongoose.md
 
 数据库链接。插入数据经典代码片段

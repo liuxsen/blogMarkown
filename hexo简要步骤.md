@@ -1,7 +1,7 @@
 ---
 title: '''hexo简要步骤'''
 date: 2016-05-15 21:32:13
-tags:
+tags: hexo
 ---
 
 ##安装Hexo

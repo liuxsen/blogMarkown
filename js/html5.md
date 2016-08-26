@@ -1,3 +1,8 @@
+---
+title: 'html5接口'
+date: 2016-05-15 22:00:07
+tags: js
+---
 # html5.md
 > localStorage 本地存储接口
 

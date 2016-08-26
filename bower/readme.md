@@ -1,3 +1,8 @@
+---
+title: 'bower'
+date: 2016-05-15 22:00:07
+tags: bower
+---
 # readme.md
 
 # 安装
