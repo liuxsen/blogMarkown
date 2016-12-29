@@ -1,7 +1,7 @@
 ---
 title: mongodb
 date: 2016-10-31 12:38:59
-tags: mongodb
+tags: nodejs
 ---
 
 # mongodb安装

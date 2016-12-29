@@ -1,7 +1,7 @@
 ---
-title: nodejs
+title: 前端ajax上传文件，图片，后端nodejs接收文件；
 date: 2016-11-18 15:44:22
-tags:  NODE
+tags:  nodejs
 ---
 
 #  前端ajax上传文件，图片，后端nodejs接收文件；

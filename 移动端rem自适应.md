@@ -1,3 +1,9 @@
+---
+title: rem.js 使用方法
+date: 2016-05-15 22:48:30
+tags:
+---
+
 # rem.js 使用方法
 
 + [移动端适配方案(上)](https://github.com/riskers/blog/issues/17)

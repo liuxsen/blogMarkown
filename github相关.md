@@ -1,3 +1,9 @@
+---
+layout: '''tortoisegit'
+title: markdown语法'
+date: 2016-05-15 22:58:11
+tags: git
+---
 ## tortoisegit 上传到github 忽略文件配置
 > 在项目根目录添加  .gitignore文件
 ```
